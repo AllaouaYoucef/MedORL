@@ -1,10 +1,16 @@
 ﻿
 
+using BLL.DTOs;
+using WebUi.Models;
+
 namespace WebUi
 {
     public class AutoMapperProfileWebUi : Profile
     {
-        //Exemple
-        //CreateMap<CompanyDto, Company>().ReverseMap();
+        public AutoMapperProfileWebUi()
+        {
+            CreateMap<DrugDto, DrugViewModel>().ReverseMap();
+
+        }
     }
 }

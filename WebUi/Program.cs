@@ -1,5 +1,6 @@
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +9,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfileBLL));
 builder.Services.AddAutoMapper(typeof(AutoMapperProfileWebUi));
+
+
+builder.Services.AddScoped<IDrugManager, DrugManager>();
 
 
 var app = builder.Build();

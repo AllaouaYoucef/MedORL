@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace BLL.DTOs
 {
-    internal class DrugDto
+    public class DrugDto
     {
+        public int Id { get; set; }
+        public required string Name { get; set; }
+        public string? Dosage { get; set; }
+
     }
 }
