@@ -8,20 +8,24 @@ namespace WebUi.Controllers
 {
     public class DrugController : Controller
     {
-
+        private readonly ILogger<DrugController> _logger;
         private readonly IMapper _mapper;
         private readonly IDrugManager _drugManager;
 
-        public DrugController(IMapper mapper, IDrugManager drugManager)
+        public DrugController(IMapper mapper, IDrugManager drugManager, ILogger<DrugController> logger)
         {
             _mapper = mapper;
             _drugManager = drugManager;
+            _logger = logger;
         }
 
 
         // GET: DrugController
         public ActionResult Index()
         {
+            _logger.LogInformation("Page d'accueil visitée");
+            _logger.LogWarning("Ceci est un avertissement");
+            _logger.LogError("Ceci est une erreur");
             List<DrugDto> listDrug = _drugManager.AllEntry();
             List < DrugViewModel > viewModel = _mapper.Map<List<DrugViewModel>>(listDrug);
 

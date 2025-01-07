@@ -1,16 +1,39 @@
 
 
 
+using Microsoft.Extensions.Logging;
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services.AddControllersWithViews();
+
+
+
+builder.Host.UseSerilog(); // Utiliser Serilog comme fournisseur de logs
+
+
+// Configuration du logging
+builder.Logging.ClearProviders(); // Supprime les fournisseurs de logs par défaut
+builder.Logging.AddConsole(); // Ajoute la sortie des logs dans la console
+builder.Logging.AddDebug(); // Ajoute la sortie des logs dans le débogueur
+builder.Logging.AddEventLog(); // Ajoute la sortie des logs dans le journal des événements Windows (optionnel)
+
+
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/app.log", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
 
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfileBLL));
 builder.Services.AddAutoMapper(typeof(AutoMapperProfileWebUi));
 
-
+//Dependecy injection 
 builder.Services.AddScoped<IDrugManager, DrugManager>();
 
 
@@ -36,3 +59,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+Log.CloseAndFlush();
