@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  webui:
+    build:
+      context: .
+      dockerfile: ./WebUi/Dockerfile
+    ports:
+      - "46535:46535" # Expose le port pour l'application WebUI
+    depends_on:
+      - bll
+      - dal
+
+  bll:
+    build:
+      context: .
+      dockerfile: ./BLL/Dockerfile
+
+  dal:
+    build:
+      context: .
+      dockerfile: ./DAL/Dockerfile

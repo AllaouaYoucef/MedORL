@@ -363,12 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # ASP.NET Core Configuration
-.WebUi/appsettings.Development.json
-.WebUi/appsettings.Production.json
-.WebUi/appsettings.json
-
-# docker
-WebUi/Dockerfile
-BLL/Dockerfile
-DAL/Dockerfile
-docker-compose.yml
+WebUi/appsettings.Development.json
+WebUi/appsettings.Production.json
+WebUi/appsettings.json
